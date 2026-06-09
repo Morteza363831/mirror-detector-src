@@ -1,4 +1,4 @@
-package org.khu.mirrordetector;
+package org.khu;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
