@@ -14,10 +14,10 @@
     <!-- Module details -->
     <groupId>org.khu</groupId>
     <artifactId>mirror-detector</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <name>${project.name}</name>
+    <description>${project.desc}</description>
+    <version>${project.version}</version>
     <packaging>war</packaging>
-    <name>mirror-detector</name>
-    <description>mirror-detector</description>
 
 
     <!-- Default properties -->
@@ -83,7 +83,7 @@
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-processor</artifactId>
-            <version>1.5.5.Final</version>
+            <version>${mapstruct.version}</version>
         </dependency>
 
 
