@@ -2,35 +2,43 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <!-- Parent details -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.5.14</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
+    <!-- Module details -->
     <groupId>org.khu</groupId>
     <artifactId>mirror-detector</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>mirror-detector</name>
     <description>mirror-detector</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+
+
+    <!-- Default properties -->
     <properties>
+
+        <!-- Project properties -->
+        <project.name>Mirror Detector</project.name>
+        <project.desc>Detect best Linux Mirrors using this service</project.desc>
+        <project.version>2026-6-1</project.version>
+
+        <!-- Dependency properties -->
+        <mapstruct.version>1.5.5-Final</mapstruct.version>
+
+        <!-- Java version -->
         <java.version>17</java.version>
     </properties>
+
+    <!-- Dependencies -->
     <dependencies>
+
+        <!-- Spring boot dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -44,28 +52,32 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+
+        <!-- Database -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+
+
+        <!-- Tools -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
+
+
+        <!-- Test -->
+<!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
+    <!-- Build settings -->
     <build>
         <plugins>
             <plugin>
