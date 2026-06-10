@@ -6,11 +6,7 @@ import org.khu.system.distribution.domain.model.Distribution;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(
-        componentModel = "spring",
-        unmappedSourcePolicy = ReportingPolicy.IGNORE,
-        unmappedTargetPolicy = ReportingPolicy.IGNORE
-)
+@Mapper(componentModel = "spring")
 public interface DistributionMapper {
 
     Distribution toModel(DistributionResponseDto dto);
