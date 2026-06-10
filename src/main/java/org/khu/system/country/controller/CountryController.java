@@ -2,7 +2,9 @@ package org.khu.system.country.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.khu.structure.ResponseBody;
+import org.khu.system.country.domain.dto.CountryResultDto;
 import org.khu.system.country.service.CountryService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +48,24 @@ public class CountryController {
                         .build()
                 );
 
+    }
+
+
+    @GetMapping
+    public ResponseEntity<ResponseBody> getAll(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                               @RequestParam(required = false, defaultValue = "50") Integer size) {
+
+        Page<CountryResultDto> countryResultDtoPage = countryService.getAll(page, size);
+
+        return ResponseEntity
+                .ok(ResponseBody.builder()
+                        .page(page)
+                        .size(size)
+                        .totalElements(countryResultDtoPage.getTotalElements())
+                        .totalPages(countryResultDtoPage.getTotalPages())
+                        .data(countryResultDtoPage.getContent())
+                        .build()
+                );
     }
 
 }
