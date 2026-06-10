@@ -18,7 +18,7 @@ public class ResponseBody {
 
     private Long totalElements;
 
-    private Long totalPages;
+    private Integer totalPages;
 
     private String message;
 
