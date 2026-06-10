@@ -2,12 +2,11 @@ package org.khu.system.distribution.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.khu.structure.ResponseBody;
+import org.khu.system.distribution.domain.dto.DistributionResultDto;
 import org.khu.system.distribution.service.DistributionService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/distributions")
@@ -24,6 +23,25 @@ public class DistributionController {
         return ResponseEntity
                 .ok(ResponseBody.builder()
                         .data(distributionService.getByName(name))
+                        .build()
+                );
+
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<ResponseBody> getByActive(@RequestParam Boolean isActive,
+                                                    @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                    @RequestParam(required = false, defaultValue = "50") Integer size) {
+
+        Page<DistributionResultDto> distributionResultDtoPage = distributionService.getByActive(isActive, page, size);
+
+        return ResponseEntity
+                .ok(ResponseBody.builder()
+                        .page(page)
+                        .size(size)
+                        .totalElements(distributionResultDtoPage.getTotalElements())
+                        .totalPages(distributionResultDtoPage.getTotalPages())
+                        .data(distributionResultDtoPage.getContent())
                         .build()
                 );
 
