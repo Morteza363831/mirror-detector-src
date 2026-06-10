@@ -23,6 +23,8 @@ public class CountryServiceImpl implements CountryService {
     private final CountryCache countryCache;
 
 
+    /// Client scope functionalities
+
     @Override
     public CountryResultDto getByName(String name) {
 
@@ -78,6 +80,19 @@ public class CountryServiceImpl implements CountryService {
         }
 
         return new PageImpl<>(countries.subList(start, end), pageRequest, countries.size());
+    }
+
+
+    /// Service scope functionalities
+
+    @Override
+    public Country getModelByName(String name) {
+
+        return countryCache.countries()
+                .stream()
+                .filter(founded -> founded.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 
 }
