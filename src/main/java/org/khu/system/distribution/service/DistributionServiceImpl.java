@@ -61,6 +61,15 @@ public class DistributionServiceImpl implements DistributionService {
                 .map(distributionMapper::toResultDto);
     }
 
+    @Override
+    public Page<DistributionResultDto> getAll(Integer page, Integer size) {
+
+        Page<Distribution> distributionPage = pagedDistributions(distributionCache.distributions(), PageRequest.of(page, size));
+
+        return distributionPage
+                .map(distributionMapper::toResultDto);
+    }
+
     private Page<Distribution> pagedDistributions(List<Distribution> distributions, PageRequest pageRequest) {
 
         int start = pageRequest.getPageNumber() * pageRequest.getPageSize();

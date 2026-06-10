@@ -11,4 +11,6 @@ public interface DistributionService {
     Page<DistributionResultDto> getByActive(Boolean isActive, Integer page, Integer size);
 
     Page<DistributionResultDto> getByPrivate(Boolean isPrivate, Integer page, Integer size);
+
+    Page<DistributionResultDto> getAll(Integer page, Integer size);
 }

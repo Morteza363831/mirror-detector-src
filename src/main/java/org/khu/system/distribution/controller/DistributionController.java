@@ -65,4 +65,23 @@ public class DistributionController {
                 );
 
     }
+
+
+    @GetMapping
+    public ResponseEntity<ResponseBody> getAll(@RequestParam(required = false, defaultValue = "0") Integer page,
+                                               @RequestParam(required = false, defaultValue = "50") Integer size) {
+
+        Page<DistributionResultDto> distributionResultDtoPage = distributionService.getAll(page, size);
+
+        return ResponseEntity
+                .ok(ResponseBody.builder()
+                        .page(page)
+                        .size(size)
+                        .totalElements(distributionResultDtoPage.getTotalElements())
+                        .totalPages(distributionResultDtoPage.getTotalPages())
+                        .data(distributionResultDtoPage.getContent())
+                        .build()
+                );
+
+    }
 }
