@@ -46,4 +46,23 @@ public class DistributionController {
                 );
 
     }
+
+    @GetMapping("/private")
+    public ResponseEntity<ResponseBody> getByPrivate(@RequestParam Boolean isPrivate,
+                                                    @RequestParam(required = false, defaultValue = "0") Integer page,
+                                                    @RequestParam(required = false, defaultValue = "50") Integer size) {
+
+        Page<DistributionResultDto> distributionResultDtoPage = distributionService.getByPrivate(isPrivate, page, size);
+
+        return ResponseEntity
+                .ok(ResponseBody.builder()
+                        .page(page)
+                        .size(size)
+                        .totalElements(distributionResultDtoPage.getTotalElements())
+                        .totalPages(distributionResultDtoPage.getTotalPages())
+                        .data(distributionResultDtoPage.getContent())
+                        .build()
+                );
+
+    }
 }

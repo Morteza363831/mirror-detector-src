@@ -38,7 +38,6 @@ public class DistributionServiceImpl implements DistributionService {
     @Override
     public Page<DistributionResultDto> getByActive(Boolean isActive, Integer page, Integer size) {
 
-        Page<Distribution> distributionPage = pagedDistributions(distributionCache.distributions(), PageRequest.of(page, size));
         List<Distribution> selectedDistributions = distributionCache.distributions().stream()
                 .filter(founded -> founded.getIsActive() == isActive)
                 .toList();
@@ -49,6 +48,14 @@ public class DistributionServiceImpl implements DistributionService {
                 .map(distributionMapper::toResultDto);
     }
 
+    @Override
+    public Page<DistributionResultDto> getByPrivate(Boolean isPrivate, Integer page, Integer size) {
+
+        List<Distribution> selectedDistributions = distributionCache.distributions().stream()
+                .filter(founded -> founded.getIsPrivate() == isPrivate)
+                .toList();
+
+        Page<Distribution> distributionPage = pagedDistributions(selectedDistributions, PageRequest.of(page, size));
 
         return distributionPage
                 .map(distributionMapper::toResultDto);

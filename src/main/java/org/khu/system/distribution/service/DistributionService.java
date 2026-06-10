@@ -9,4 +9,6 @@ public interface DistributionService {
     DistributionResultDto getByName(String name);
 
     Page<DistributionResultDto> getByActive(Boolean isActive, Integer page, Integer size);
+
+    Page<DistributionResultDto> getByPrivate(Boolean isPrivate, Integer page, Integer size);
 }
