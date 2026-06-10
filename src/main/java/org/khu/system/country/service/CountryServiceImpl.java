@@ -115,4 +115,9 @@ public class CountryServiceImpl implements CountryService {
                 .orElse(null);
     }
 
+    @Override
+    public List<Country> getModels() {
+        return countryCache.countries();
+    }
+
 }

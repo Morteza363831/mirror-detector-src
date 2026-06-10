@@ -4,6 +4,8 @@ import org.khu.system.country.domain.dto.CountryResultDto;
 import org.khu.system.country.domain.model.Country;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 
 public interface CountryService {
 
@@ -21,5 +23,7 @@ public interface CountryService {
     Country getModelByCode2(String code2);
 
     Country getModelByCode3(String code3);
+
+    List<Country> getModels();
 
 }
