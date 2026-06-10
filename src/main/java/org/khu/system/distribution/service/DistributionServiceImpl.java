@@ -39,6 +39,16 @@ public class DistributionServiceImpl implements DistributionService {
     public Page<DistributionResultDto> getByActive(Boolean isActive, Integer page, Integer size) {
 
         Page<Distribution> distributionPage = pagedDistributions(distributionCache.distributions(), PageRequest.of(page, size));
+        List<Distribution> selectedDistributions = distributionCache.distributions().stream()
+                .filter(founded -> founded.getIsActive() == isActive)
+                .toList();
+
+        Page<Distribution> distributionPage = pagedDistributions(selectedDistributions, PageRequest.of(page, size));
+
+        return distributionPage
+                .map(distributionMapper::toResultDto);
+    }
+
 
         return distributionPage
                 .map(distributionMapper::toResultDto);
