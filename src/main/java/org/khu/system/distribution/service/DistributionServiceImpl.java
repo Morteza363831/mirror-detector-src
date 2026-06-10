@@ -23,6 +23,8 @@ public class DistributionServiceImpl implements DistributionService {
     private final DistributionCache distributionCache;
 
 
+    /// Client scope functionalities
+
     @Override
     public DistributionResultDto getByName(String name) {
 
@@ -80,5 +82,24 @@ public class DistributionServiceImpl implements DistributionService {
         }
 
         return new PageImpl<>(distributions.subList(start, end), pageRequest, distributions.size());
+    }
+
+
+    /// Service scope functionalities
+
+    @Override
+    public Distribution getModelByName(String name) {
+
+        return distributionCache.distributions()
+                .stream()
+                .filter(founded -> founded.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public List<Distribution> getModels() {
+
+        return distributionCache.distributions();
     }
 }
