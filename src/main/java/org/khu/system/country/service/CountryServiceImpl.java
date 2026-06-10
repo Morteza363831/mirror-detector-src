@@ -28,4 +28,26 @@ public class CountryServiceImpl implements CountryService {
                 .orElseThrow(() -> new RuntimeException()); // todo
 
     }
+
+    @Override
+    public CountryResultDto getByCode2(String code2) {
+
+        return countryCache.countries()
+                .stream()
+                .filter(founded -> founded.getCode2().equalsIgnoreCase(code2))
+                .findFirst()
+                .map(countryMapper::toResultDto)
+                .orElseThrow(() -> new RuntimeException()); // todo
+    }
+
+    @Override
+    public CountryResultDto getByCode3(String code3) {
+
+        return countryCache.countries()
+                .stream()
+                .filter(founded -> founded.getCode3().equalsIgnoreCase(code3))
+                .findFirst()
+                .map(countryMapper::toResultDto)
+                .orElseThrow(() -> new RuntimeException()); // todo
+    }
 }

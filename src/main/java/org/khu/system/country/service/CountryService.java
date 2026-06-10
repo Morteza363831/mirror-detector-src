@@ -6,4 +6,8 @@ public interface CountryService {
 
     CountryResultDto getByName(String name);
 
+    CountryResultDto getByCode2(String code2);
+
+    CountryResultDto getByCode3(String code3);
+
 }
