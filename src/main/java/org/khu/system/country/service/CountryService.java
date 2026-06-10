@@ -18,4 +18,8 @@ public interface CountryService {
 
     Country getModelByName(String name);
 
+    Country getModelByCode2(String code2);
+
+    Country getModelByCode3(String code3);
+
 }

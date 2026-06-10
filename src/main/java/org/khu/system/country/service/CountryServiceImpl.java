@@ -95,4 +95,24 @@ public class CountryServiceImpl implements CountryService {
                 .orElse(null);
     }
 
+    @Override
+    public Country getModelByCode2(String code2) {
+
+        return countryCache.countries()
+                .stream()
+                .filter(founded -> founded.getCode2().equalsIgnoreCase(code2))
+                .findFirst()
+                .orElse(null);
+    }
+
+    @Override
+    public Country getModelByCode3(String code3) {
+
+        return countryCache.countries()
+                .stream()
+                .filter(founded -> founded.getCode3().equalsIgnoreCase(code3))
+                .findFirst()
+                .orElse(null);
+    }
+
 }
