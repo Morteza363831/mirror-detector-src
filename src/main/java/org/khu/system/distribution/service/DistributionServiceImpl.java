@@ -1,6 +1,8 @@
 package org.khu.system.distribution.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.system.distribution.cache.DistributionCache;
+import org.khu.system.distribution.domain.dto.DistributionResultDto;
 import org.khu.system.distribution.domain.mapper.DistributionMapper;
 import org.khu.system.distribution.handler.DistributionRequestHandler;
 import org.springframework.stereotype.Service;
@@ -14,4 +16,6 @@ public class DistributionServiceImpl implements DistributionService {
 
     // handlers
     private final DistributionRequestHandler distributionRequestHandler;
+    private final DistributionCache distributionCache;
+
 }
