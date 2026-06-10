@@ -16,4 +16,16 @@ public class DistributionServiceImpl implements DistributionService {
     // handlers
     private final DistributionCache distributionCache;
 
+
+    @Override
+    public DistributionResultDto getByName(String name) {
+
+        return distributionCache.distributions()
+                .stream()
+                .filter(founded -> founded.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .map(distributionMapper::toResultDto)
+                .orElseThrow(() -> new RuntimeException()); // todo
+
+    }
 }
