@@ -9,7 +9,7 @@ public record MirrorResponseDto(
         @JsonProperty("name")
         String name,
 
-        @JsonProperty("display_name")
+        @JsonProperty("displayname")
         String displayName,
 
         @JsonProperty("self_link")

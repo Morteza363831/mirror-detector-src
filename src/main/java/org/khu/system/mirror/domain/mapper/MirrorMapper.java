@@ -11,4 +11,6 @@ public interface MirrorMapper {
     Mirror toModel(MirrorResponseDto dto);
 
     MirrorResultDto toResultDto(Mirror mirror);
+
+    MirrorResultDto toResultDto(MirrorResponseDto responseDto);
 }
