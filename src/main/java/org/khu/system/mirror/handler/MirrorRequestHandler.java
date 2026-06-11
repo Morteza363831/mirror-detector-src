@@ -36,7 +36,7 @@ public class MirrorRequestHandler {
                 .queryParam("country", countryEncodedLink)
                 .queryParam("mirror_type", launcePadSettings.getMirrorType())
                 .queryParam("ws.size", size)
-                .build()
+                .build(true)
                 .toUri();
 
         HttpRequest request = HttpRequest.newBuilder()
