@@ -19,7 +19,7 @@ public class MirrorController {
     private final MirrorService mirrorService;
 
 
-    @GetMapping("/distribution/{distro}")
+    @GetMapping("/dist/{distro}")
     public ResponseEntity<ResponseBody> getMirrorsByDistributionAndCountry(@PathVariable String distro,
                                                                            @RequestParam(required = false, defaultValue = "ir") String code2,
                                                                            @RequestParam(required = false, defaultValue = "50") Integer size) {
@@ -37,7 +37,7 @@ public class MirrorController {
                 );
     }
 
-    @GetMapping("/distribution/{distro}/test")
+    @GetMapping("/dist/{distro}/test")
     public ResponseEntity<ResponseBody> testMirrorsByDistributionAndCountry(@PathVariable String distro,
                                                                            @RequestParam(required = false, defaultValue = "ir") String code2,
                                                                            @RequestParam(required = false, defaultValue = "50") Integer size) {
