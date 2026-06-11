@@ -5,6 +5,7 @@ import org.khu.system.country.domain.model.Country;
 import org.khu.system.country.service.CountryService;
 import org.khu.system.distribution.domain.model.Distribution;
 import org.khu.system.distribution.service.DistributionService;
+import org.khu.system.mirror.domain.dto.MirrorBenchmarkDto;
 import org.khu.system.mirror.domain.dto.MirrorResponseDto;
 import org.khu.system.mirror.domain.dto.MirrorResultDto;
 import org.khu.system.mirror.domain.mapper.MirrorMapper;
@@ -28,6 +29,7 @@ public class MirrorServiceImpl implements MirrorService {
     // service
     private final CountryService countryService;
     private final DistributionService distributionService;
+    private final MirrorBenchmarkService mirrorBenchmarkService;
 
 
     /// Client scope functionalities
@@ -54,6 +56,16 @@ public class MirrorServiceImpl implements MirrorService {
                 .toList();
     }
 
+    @Override
+    public List<MirrorBenchmarkDto> testAllByDistributionAndCountry(String distribution, String code2, Integer size) {
+
+        List<MirrorResultDto> mirrorResultDtoList = getAllByDistributionAndCountry(distribution, code2, size);
+
+        List<MirrorBenchmarkDto> mirrorBenchmarkDtoList = mirrorBenchmarkService.benchmarkAll(mirrorResultDtoList);
+
+        return mirrorBenchmarkDtoList;
+
+    }
 
     private boolean validateIsNull(Country foundedCountry, Distribution foundedDistro) {
 
