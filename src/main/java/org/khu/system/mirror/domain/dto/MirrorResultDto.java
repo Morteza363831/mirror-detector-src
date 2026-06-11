@@ -8,6 +8,8 @@ public record MirrorResultDto(
 
         Boolean enabled,
 
+        String speed,
+
         String baseUrl
 
 ) {
