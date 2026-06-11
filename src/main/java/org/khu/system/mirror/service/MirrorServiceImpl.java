@@ -78,4 +78,33 @@ public class MirrorServiceImpl implements MirrorService {
         return URLEncoder.encode(link, StandardCharsets.UTF_8);
     }
 
+
+    @Override
+    public List<MirrorResultDto> getAllByDistribution(String distribution, Integer size) {
+
+        Distribution foundedDistribution = distributionService.getModelByName(distribution);
+
+        if (foundedDistribution == null) {
+            return List.of();
+        }
+
+        List<MirrorResponseDto> mirrorResponseDtoList =
+                mirrorRequestHandler.fetchMirrorsByDistribution(foundedDistribution.getArchiveMirrorsCollectionLink(), size);
+
+        return mirrorResponseDtoList
+                .stream()
+                .map(mirrorMapper::toResultDto)
+                .toList();
+
+    }
+
+    @Override
+    public List<MirrorBenchmarkDto> testAllByDistribution(String distribution, Integer size) {
+
+        List<MirrorResultDto> mirrorResultDtoList = getAllByDistribution(distribution, size);
+
+        List<MirrorBenchmarkDto> mirrorBenchmarkDtoList = mirrorBenchmarkService.benchmarkAll(mirrorResultDtoList);
+
+        return mirrorBenchmarkDtoList;
+    }
 }

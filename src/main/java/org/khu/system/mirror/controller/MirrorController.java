@@ -54,4 +54,39 @@ public class MirrorController {
                         .build()
                 );
     }
+
+
+    @GetMapping("/best/dist/{distro}")
+    public ResponseEntity<ResponseBody> getBestMirrorsByDistribution(@PathVariable String distro,
+                                                                     @RequestParam(required = false, defaultValue = "50") Integer size) {
+
+        List<MirrorResultDto> resultDtoList = mirrorService.getAllByDistribution(distro, size);
+
+        return ResponseEntity
+                .ok(ResponseBody.builder()
+                        .page(0)
+                        .size(size)
+                        .totalElements((long) resultDtoList.size())
+                        .totalPages(1)
+                        .data(resultDtoList)
+                        .build()
+                );
+    }
+
+    @GetMapping("/best/dist/{distro}/test")
+    public ResponseEntity<ResponseBody> testBestMirrorsByDistribution(@PathVariable String distro,
+                                                                      @RequestParam(required = false, defaultValue = "50") Integer size) {
+
+        List<MirrorBenchmarkDto> resultDtoList = mirrorService.testAllByDistribution(distro, size);
+
+        return ResponseEntity
+                .ok(ResponseBody.builder()
+                        .page(0)
+                        .size(size)
+                        .totalElements((long) resultDtoList.size())
+                        .totalPages(1)
+                        .data(resultDtoList)
+                        .build()
+                );
+    }
 }

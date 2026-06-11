@@ -39,8 +39,27 @@ public class MirrorRequestHandler {
                 .build(true)
                 .toUri();
 
+        return handleRequest(mirrorUri);
+
+    }
+
+    public List<MirrorResponseDto> fetchMirrorsByDistribution(String archiveMirrorsLink, Integer size) {
+
+        URI archiveMirrorUri = UriComponentsBuilder
+                .fromUriString(archiveMirrorsLink)
+                .queryParam("ws.size", size)
+                .build(true)
+                .toUri();
+
+
+        return handleRequest(archiveMirrorUri);
+
+    }
+
+    private List<MirrorResponseDto> handleRequest(URI uri) {
+
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(mirrorUri)
+                .uri(uri)
                 .GET()
                 .build();
 

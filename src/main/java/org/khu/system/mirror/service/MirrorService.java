@@ -11,4 +11,8 @@ public interface MirrorService {
 
     List<MirrorBenchmarkDto> testAllByDistributionAndCountry(String distribution, String code2, Integer size);
 
+    List<MirrorResultDto> getAllByDistribution(String distribution, Integer size);
+
+    List<MirrorBenchmarkDto> testAllByDistribution(String distribution, Integer size);
+
 }
