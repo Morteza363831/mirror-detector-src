@@ -10,4 +10,8 @@ import org.springframework.stereotype.Component;
 public class LauncePadSettings {
 
     private String baseUrl;
+
+    private String mirrorType;
+
+    private String mirrorWsOp;
 }
