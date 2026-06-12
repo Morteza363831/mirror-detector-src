@@ -1,6 +1,8 @@
 package org.khu.system.distribution.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.logging.DebugLogging;
+import org.khu.logging.ErrorLogging;
 import org.khu.system.distribution.cache.DistributionCache;
 import org.khu.system.distribution.domain.dto.DistributionResultDto;
 import org.khu.system.distribution.domain.mapper.DistributionMapper;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@ErrorLogging
+@DebugLogging
 @Service
 @RequiredArgsConstructor
 public class DistributionServiceImpl implements DistributionService {

@@ -3,6 +3,8 @@ package org.khu.system.country.handler;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.khu.logging.DebugLogging;
+import org.khu.logging.ErrorLogging;
 import org.khu.system.country.domain.dto.CountryResponseDto;
 import org.khu.utils.LauncePadSettings;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,8 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+@ErrorLogging
+@DebugLogging
 @Component
 @RequiredArgsConstructor
 public class CountryRequestHandler {

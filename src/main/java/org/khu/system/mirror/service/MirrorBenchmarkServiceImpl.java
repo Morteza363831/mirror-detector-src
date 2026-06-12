@@ -1,6 +1,8 @@
 package org.khu.system.mirror.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.logging.DebugLogging;
+import org.khu.logging.ErrorLogging;
 import org.khu.system.mirror.domain.dto.BenchmarkResult;
 import org.khu.system.mirror.domain.dto.MirrorBenchmarkDto;
 import org.khu.system.mirror.domain.dto.MirrorResultDto;
@@ -21,6 +23,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+@ErrorLogging
+@DebugLogging
 @Service
 @RequiredArgsConstructor
 public class MirrorBenchmarkServiceImpl implements MirrorBenchmarkService {

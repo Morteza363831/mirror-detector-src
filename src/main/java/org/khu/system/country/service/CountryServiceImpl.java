@@ -1,6 +1,8 @@
 package org.khu.system.country.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.logging.DebugLogging;
+import org.khu.logging.ErrorLogging;
 import org.khu.system.country.cache.CountryCache;
 import org.khu.system.country.domain.dto.CountryResultDto;
 import org.khu.system.country.domain.mapper.CountryMapper;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@ErrorLogging
+@DebugLogging
 @Service
 @RequiredArgsConstructor
 public class CountryServiceImpl implements CountryService {
