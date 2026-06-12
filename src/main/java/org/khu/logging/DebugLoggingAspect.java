@@ -5,7 +5,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.khu.utils.LogSummaryUtil;
 import org.springframework.stereotype.Component;
 
 @ErrorLogging
@@ -38,7 +37,7 @@ public class DebugLoggingAspect {
 
         long duration = System.currentTimeMillis() - start;
 
-        LoggingUtil.debug(clazz, method + "OUTPUT", LogSummaryUtil.summarize(result));
+        LoggingUtil.debug(clazz, method + "OUTPUT", LoggingSummaryUtil.summarize(result));
 
         LoggingUtil.debug(clazz, method + "DURATION", duration + " ms");
 

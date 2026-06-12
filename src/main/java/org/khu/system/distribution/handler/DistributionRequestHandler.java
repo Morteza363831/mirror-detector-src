@@ -3,6 +3,8 @@ package org.khu.system.distribution.handler;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.khu.logging.DebugLogging;
+import org.khu.logging.ErrorLogging;
 import org.khu.system.distribution.domain.dto.DistributionResponseDto;
 import org.khu.utils.LauncePadSettings;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,8 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+@DebugLogging
+@ErrorLogging
 @Component
 @RequiredArgsConstructor
 public class DistributionRequestHandler {
@@ -49,9 +53,9 @@ public class DistributionRequestHandler {
 
             JsonNode body = jsonMapper.readTree(response.body());
 
-            if (body.isNull() || body.isEmpty()) {
+            /*if (body.isNull() || body.isEmpty()) {
                 return new ArrayList<>();
-            }
+            }*/
 
             JsonNode entries = body.get("entries");
 

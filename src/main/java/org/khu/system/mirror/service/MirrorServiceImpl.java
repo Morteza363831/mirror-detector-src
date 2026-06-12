@@ -1,6 +1,8 @@
 package org.khu.system.mirror.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.logging.DebugLogging;
+import org.khu.logging.ErrorLogging;
 import org.khu.system.country.domain.model.Country;
 import org.khu.system.country.service.CountryService;
 import org.khu.system.distribution.domain.model.Distribution;
@@ -16,6 +18,8 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
+@ErrorLogging
+@DebugLogging
 @Service
 @RequiredArgsConstructor
 public class MirrorServiceImpl implements MirrorService {
