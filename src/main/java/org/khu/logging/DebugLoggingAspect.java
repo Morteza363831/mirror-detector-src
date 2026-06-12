@@ -5,6 +5,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
 @ErrorLogging
@@ -24,13 +25,15 @@ public class DebugLoggingAspect {
 
         String method = joinPoint.getSignature().getName();
 
+        String[] paramNames = ( (MethodSignature) joinPoint.getSignature()).getParameterNames();
+
         Object[] args = joinPoint.getArgs();
 
         long start = System.currentTimeMillis();
 
        // LoggingUtil.debug(clazz, method, "Before processing method", "Before processing method");
 
-        LoggingUtil.debug(clazz, method + " INPUT", args);
+        LoggingUtil.debug(clazz, method + " INPUT", LoggingInputSummaryUtil.summarize(paramNames, args));
 
 
         Object result = joinPoint.proceed();
