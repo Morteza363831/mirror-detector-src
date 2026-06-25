@@ -1,11 +1,14 @@
 package org.khu.system.mirror.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.exception.CustomException;
+import org.khu.exception.ErrorCode;
 import org.khu.logging.DebugLogging;
 import org.khu.logging.ErrorLogging;
 import org.khu.system.mirror.domain.dto.BenchmarkResult;
 import org.khu.system.mirror.domain.dto.MirrorBenchmarkDto;
 import org.khu.system.mirror.domain.dto.MirrorResultDto;
+import org.khu.utils.DomainNames;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -149,7 +152,7 @@ public class MirrorBenchmarkServiceImpl implements MirrorBenchmarkService {
 
         }
         catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e); // todo
+            throw new CustomException(ErrorCode.COULD_NOT_PROCESS_RESPONSE, DomainNames.MIRROR.getName());
         }
 
     }
@@ -179,7 +182,7 @@ public class MirrorBenchmarkServiceImpl implements MirrorBenchmarkService {
 
         }
         catch (IOException e) {
-            throw new RuntimeException(e); // todo
+            throw new CustomException(ErrorCode.INTERNAL_SERVER_ERROR);
         }
 
     }

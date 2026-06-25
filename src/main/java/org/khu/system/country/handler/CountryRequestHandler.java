@@ -3,9 +3,12 @@ package org.khu.system.country.handler;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.khu.exception.CustomException;
+import org.khu.exception.ErrorCode;
 import org.khu.logging.DebugLogging;
 import org.khu.logging.ErrorLogging;
 import org.khu.system.country.domain.dto.CountryResponseDto;
+import org.khu.utils.DomainNames;
 import org.khu.utils.LauncePadSettings;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -50,7 +53,7 @@ public class CountryRequestHandler {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() != HttpStatus.OK.value()) {
-                throw new RuntimeException(); // todo
+                throw new CustomException(ErrorCode.INVALID_RESPONSE, DomainNames.COUNTRY.getName());
             }
 
             JsonNode body = jsonMapper.readTree(response.body());
@@ -70,7 +73,7 @@ public class CountryRequestHandler {
             return countryResponseDtoList;
 
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e); // todo
+            throw new CustomException(ErrorCode.COULD_NOT_PROCESS_RESPONSE, DomainNames.COUNTRY.getName());
         }
 
     }
