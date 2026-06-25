@@ -3,7 +3,10 @@ package org.khu.system.mirror.handler;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.khu.exception.CustomException;
+import org.khu.exception.ErrorCode;
 import org.khu.system.mirror.domain.dto.MirrorResponseDto;
+import org.khu.utils.DomainNames;
 import org.khu.utils.LauncePadSettings;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
@@ -67,7 +70,7 @@ public class MirrorRequestHandler {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() != HttpStatus.OK.value()) {
-                throw new RuntimeException(); // todo
+                throw new CustomException(ErrorCode.INVALID_RESPONSE, DomainNames.MIRROR.getName());
             }
 
             JsonNode body = jsonMapper.readTree(response.body());
@@ -87,7 +90,7 @@ public class MirrorRequestHandler {
             return mirrorResponseDtoList;
 
         } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e); // todo
+            throw new CustomException(ErrorCode.COULD_NOT_PROCESS_RESPONSE, DomainNames.MIRROR.getName());
         }
 
     }

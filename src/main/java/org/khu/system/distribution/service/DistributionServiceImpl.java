@@ -1,6 +1,8 @@
 package org.khu.system.distribution.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.exception.CustomException;
+import org.khu.exception.ErrorCode;
 import org.khu.logging.DebugLogging;
 import org.khu.logging.ErrorLogging;
 import org.khu.system.distribution.cache.DistributionCache;
@@ -37,7 +39,7 @@ public class DistributionServiceImpl implements DistributionService {
                 .filter(founded -> founded.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .map(distributionMapper::toResultDto)
-                .orElseThrow(() -> new RuntimeException()); // todo
+                .orElseThrow(() -> new CustomException(ErrorCode.MODEL_NOT_FOUND, name)); // todo
 
     }
 

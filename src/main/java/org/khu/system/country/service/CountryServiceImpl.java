@@ -1,12 +1,15 @@
 package org.khu.system.country.service;
 
 import lombok.RequiredArgsConstructor;
+import org.khu.exception.CustomException;
+import org.khu.exception.ErrorCode;
 import org.khu.logging.DebugLogging;
 import org.khu.logging.ErrorLogging;
 import org.khu.system.country.cache.CountryCache;
 import org.khu.system.country.domain.dto.CountryResultDto;
 import org.khu.system.country.domain.mapper.CountryMapper;
 import org.khu.system.country.domain.model.Country;
+import org.khu.utils.DomainNames;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -37,7 +40,7 @@ public class CountryServiceImpl implements CountryService {
                 .filter(founded -> founded.getName().equalsIgnoreCase(name))
                 .findFirst()
                 .map(countryMapper::toResultDto)
-                .orElseThrow(() -> new RuntimeException()); // todo
+                .orElseThrow(() -> new CustomException(ErrorCode.MODEL_NOT_FOUND, name)); // todo
 
     }
 
@@ -49,7 +52,7 @@ public class CountryServiceImpl implements CountryService {
                 .filter(founded -> founded.getCode2().equalsIgnoreCase(code2))
                 .findFirst()
                 .map(countryMapper::toResultDto)
-                .orElseThrow(() -> new RuntimeException()); // todo
+                .orElseThrow(() -> new CustomException(ErrorCode.MODEL_NOT_FOUND, code2)); // todo
     }
 
     @Override
@@ -60,7 +63,7 @@ public class CountryServiceImpl implements CountryService {
                 .filter(founded -> founded.getCode3().equalsIgnoreCase(code3))
                 .findFirst()
                 .map(countryMapper::toResultDto)
-                .orElseThrow(() -> new RuntimeException()); // todo
+                .orElseThrow(() -> new CustomException(ErrorCode.MODEL_NOT_FOUND, code3)); // todo
     }
 
     @Override
