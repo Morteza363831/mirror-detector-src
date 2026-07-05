@@ -30,6 +30,7 @@
 
         <!-- Dependency properties -->
         <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <jacoco.version>0.8.13</jacoco.version>
 
         <!-- Java version -->
         <java.version>17</java.version>
@@ -181,14 +182,36 @@
 
                             </annotationProcessorPaths>
                         </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.version}</version>
+
+                <executions>
+
+                    <!-- Start coverage agent -->
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+
+                    <!-- Generate HTML/XML reports -->
+                    <execution>
+                        <id>report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
                     </execution>
 
                 </executions>
             </plugin>
-
         </plugins>
-
     </build>
 
 </project>
